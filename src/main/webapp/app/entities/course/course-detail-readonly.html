@@ -1,0 +1,101 @@
+
+<div>
+    <h2><span>Course</span> {{vm.course.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{vm.course.name}}</span>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+            <span>{{vm.course.price}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{vm.course.description}}</span>
+        </dd>
+        <dt><span>Rating</span></dt>
+        <dd>
+            <span>{{vm.course.rating}}</span>
+        </dd>
+        <dt><span>District</span></dt>
+        <dd>
+            <span>{{vm.course.district}}</span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <span>{{vm.course.category}}</span>
+        </dd>
+        <dt><span>Teacher</span></dt>
+        <dd>
+            {{vm.course.teacher.login}}
+        </dd>
+    </dl>
+
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+            <tr>
+                <th><span>ID</span></th>
+                <th><span>Image</span></th>
+                <th><span>Coursepic</span></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="pic in vm.picture track by pic.id">
+                <td><a ui-sref="pic-detail({id:pic.id})">{{pic.id}}</a></td>
+                <td>
+                    <a ng-if="pic.image" ng-click="vm.openFile(pic.imageContentType, pic.image)">
+                        <img data-ng-src="{{'data:' + pic.imageContentType + ';base64,' + pic.image}}" style="max-height: 30px;" alt="pic image"/>
+                    </a>
+                    <span ng-if="pic.image">{{pic.imageContentType}}, {{vm.byteSize(pic.image)}}</span>
+                </td>
+                <td>
+                    <a ui-sref="course-detail({id:pic.coursepic.id})">{{pic.coursepic.id}}</a>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                ui-sref="pic-detail({id:pic.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-sm-down"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="pic.edit({id:pic.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-sm-down"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="pic.delete({id:pic.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                            <span class="hidden-sm-down"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="course-detail.edit({id:vm.course.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+
+    <button type="button" ui-sref="course-detail.addpic({id:vm.course.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Add pic</span>
+    </button>
+</div>
