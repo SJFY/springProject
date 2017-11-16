@@ -3,20 +3,19 @@
 
     angular
         .module('hopefullyApp')
-        .controller('CopyuserDialogController', CopyuserDialogController);
+        .controller('CopyuserAddCController', CopyuserAddCController);
 
-    CopyuserDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'DataUtils', 'entity', 'Copyuser', 'User', 'Course', 'Principal'];
+    CopyuserAddCController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'DataUtils', 'entity', 'newc', 'Copyuser', 'User', 'Course', 'Principal'];
 
-    function CopyuserDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, DataUtils, entity, Copyuser, User, Course, Principal) {
+    function CopyuserAddCController ($timeout, $scope, $stateParams, $uibModalInstance, $q, DataUtils, entity, newc, Copyuser, User, Course, Principal) {
         var vm = this;
 
         vm.copyuser = entity;
+        vm.copyuser.courses.push(newc);
         vm.clear = clear;
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
         vm.save = save;
-        vm.users = User.query();
-        vm.courses = Course.getcourse().query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

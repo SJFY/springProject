@@ -5,12 +5,13 @@
         .module('hopefullyApp')
         .controller('CopyuserController', CopyuserController);
 
-    CopyuserController.$inject = ['DataUtils', 'Copyuser', 'CopyuserSearch', 'Principal'];
+    CopyuserController.$inject = ['DataUtils', 'Copyuser', 'CopyuserSearch', 'Principal', 'Course'];
 
-    function CopyuserController(DataUtils, Copyuser, CopyuserSearch, Principal) {
+    function CopyuserController(DataUtils, Copyuser, CopyuserSearch, Principal, Course) {
 
         var vm = this;
 
+        vm.courses = [];
         vm.copyusers = [];
         vm.openFile = DataUtils.openFile;
         vm.byteSize = DataUtils.byteSize;
@@ -26,22 +27,33 @@
         });
 
         function loadAll() {
-            Copyuser.query(function(result) {
-                vm.copyusers = result;
+            Course.getcourse().query(function(result) {
+                vm.courses = result;
                 vm.searchQuery = null;
-                vm.len = vm.account.login;
-                for (var i = 0; i < vm.copyusers.length; i++) {
-                    if (vm.copyusers[i].user.login === vm.len) {
-                        vm.copyuser = vm.copyusers[i];
-                    }
-                }
-                if (vm.copyuser === null) {
-                    vm.added = false;
-                }
-                else {
-                    vm.added = true;
-                }
+                Copyuser.getbyuser().get({id:vm.account.id}, function (result) {
+                    vm.copyuser = result;
+
+                })
             });
+            // Copyuser.getcopyuser().query(function(result) {
+            //     vm.copyusers = result;
+            //     vm.searchQuery = null;
+            //     vm.len = vm.account.login;
+            //     for (var i = 0; i < vm.copyusers.length; i++) {
+            //         if (vm.copyusers[i].user.login === vm.len) {
+            //             vm.copyuser = vm.copyusers[i];
+            //         }
+            //     }
+            //     if (vm.copyuser === null) {
+            //         vm.added = false;
+            //     }
+            //     else {
+            //         vm.added = true;
+            //     }
+            // });
+            vm.tmp = vm.account;
+
+
         }
 
         function search() {

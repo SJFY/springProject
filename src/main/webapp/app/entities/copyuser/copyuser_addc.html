@@ -7,13 +7,13 @@
         <h4 class="modal-title" id="myCopyuserLabel">Create or edit a Copyuser</h4>
     </div>
     <h1>we have {{vm.len}} users</h1>
-    <h1>copyuse is {{vm.copyuser.user}}</h1>
+    <h1>course is {{vm.tmp}}</h1>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" ng-show="vm.copyuser.id">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.copyuser.id" readonly />
+                   ng-model="vm.copyuser.id" readonly />
         </div>
         <div class="form-group" ngf-drop ngf-change="vm.setAvater($file, vm.copyuser)" ngf-pattern="'image/*'">
             <label class="control-label" for="field_avater">Avater</label>
@@ -32,16 +32,16 @@
                 </button>
             </div>
             <input type="hidden" class="form-control" name="avater" id="field_avater"
-                    ng-model="vm.copyuser.avater"
-                    />
+                   ng-model="vm.copyuser.avater"
+            />
             <input type="hidden" class="form-control" name="avaterContentType" id="field_avaterContentType"
-                    ng-model="vm.copyuser.avaterContentType" />
+                   ng-model="vm.copyuser.avaterContentType" />
         </div>
 
 
         <div ng-show="editForm.user.$invalid">
             <p class="help-block"
-                ng-show="editForm.user.$error.required">
+               ng-show="editForm.user.$error.required">
                 This field is required.
             </p>
         </div>

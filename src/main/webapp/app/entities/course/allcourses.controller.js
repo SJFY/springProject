@@ -4,8 +4,8 @@
     angular
         .module('hopefullyApp')
         .controller('AllCoursesController', AllCoursesController);
-    AllCoursesController.$inject = ['DataUtils', 'Course', 'CourseSearch', 'Pic'];
-    function AllCoursesController(DataUtils, Course, CourseSearch, Pic) {
+    AllCoursesController.$inject = ['DataUtils', 'Course', 'CourseSearch', 'Pic', 'Principal', 'Copyuser'];
+    function AllCoursesController(DataUtils, Course, CourseSearch, Pic, Principal, Copyuser) {
 
         var vm = this;
 
@@ -18,6 +18,15 @@
         vm.loadAll = loadAll;
 
         loadAll();
+
+        Principal.identity().then(function(account) {
+            vm.account = account;
+            vm.isAuthenticated = Principal.isAuthenticated;
+            Copyuser.getbyuser().get({id:vm.account.id}, function (result) {
+                vm.copyuser = result;
+
+            })
+        });
 
         function loadAll() {
             Course.getall().query(function(result) {

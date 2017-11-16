@@ -19,7 +19,7 @@
         }
 
         function confirmDelete (id) {
-            Copyuser.delete({id: id},
+            Copyuser.getcopyuser().delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });

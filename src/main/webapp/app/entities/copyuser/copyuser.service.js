@@ -9,18 +9,31 @@
     function Copyuser ($resource) {
         var resourceUrl =  'api/copyusers/:id';
 
-        return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
-            'get': {
-                method: 'GET',
-                transformResponse: function (data) {
-                    if (data) {
-                        data = angular.fromJson(data);
+        var copyuserFac = {};
+
+        copyuserFac.getcopyuser = function(){
+            return $resource(resourceUrl, {}, {
+                'query': { method: 'GET', isArray: true},
+                'get': {
+                    method: 'GET',
+                    transformResponse: function (data) {
+                        if (data) {
+                            data = angular.fromJson(data);
+                        }
+                        return data;
                     }
-                    return data;
-                }
-            },
-            'update': { method:'PUT' }
-        });
+                },
+                'update': { method:'PUT' }
+            });
+        };
+
+        copyuserFac.getbyuser = function() {
+            return $resource( 'api/copyuserByuser/:id', {}, {
+                'query': {method: 'GET', isArray: true}
+            });
+        };
+
+        return copyuserFac;
+
     }
 })();

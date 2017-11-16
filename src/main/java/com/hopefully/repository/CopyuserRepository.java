@@ -19,4 +19,8 @@ public interface CopyuserRepository extends JpaRepository<Copyuser, Long> {
     @Query("select copyuser from Copyuser copyuser left join fetch copyuser.courses where copyuser.id =:id")
     Copyuser findOneWithEagerRelationships(@Param("id") Long id);
 
+    @Query("select copyuser from Copyuser copyuser left join fetch copyuser.courses where copyuser.user.id =:id")
+    Copyuser findByUserId(@Param("id") Long id);
+
+
 }

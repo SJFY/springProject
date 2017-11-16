@@ -101,6 +101,20 @@ public class CopyuserResource {
         }
 
     /**
+     * GET  /copyusersByuser/:id : get the "id" copyuser.
+     *
+     * @param id the id of the copyuser to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the copyuser, or with status 404 (Not Found)
+     */
+    @GetMapping("/copyuserByuser/{id}")
+    @Timed
+    public ResponseEntity<Copyuser> getCopyuserByUser(@PathVariable Long id) {
+        log.debug("REST request to get Copyuser : {}", id);
+        Copyuser copyuser = copyuserRepository.findByUserId(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(copyuser));
+    }
+
+    /**
      * GET  /copyusers/:id : get the "id" copyuser.
      *
      * @param id the id of the copyuser to retrieve

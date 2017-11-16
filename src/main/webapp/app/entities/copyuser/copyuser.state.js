@@ -42,7 +42,7 @@
             },
             resolve: {
                 entity: ['$stateParams', 'Copyuser', function($stateParams, Copyuser) {
-                    return Copyuser.get({id : $stateParams.id}).$promise;
+                    return Copyuser.getcopyuser().get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
@@ -69,7 +69,7 @@
                     size: 'lg',
                     resolve: {
                         entity: ['Copyuser', function(Copyuser) {
-                            return Copyuser.get({id : $stateParams.id}).$promise;
+                            return Copyuser.getcopyuser().get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -123,7 +123,7 @@
                     size: 'lg',
                     resolve: {
                         entity: ['Copyuser', function(Copyuser) {
-                            return Copyuser.get({id : $stateParams.id}).$promise;
+                            return Copyuser.getcopyuser().get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -133,6 +133,34 @@
                 });
             }]
         })
+            .state('copyuser.addc', {
+                parent: 'copyuser',
+                url: '/{id}/{cid}/add',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/copyuser/copyuser_addc.html',
+                        controller: 'CopyuserAddCController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['Copyuser', function(Copyuser) {
+                                return Copyuser.getcopyuser().get({id : $stateParams.id}).$promise;
+                            }],
+                            newc: ['Course', function(Course) {
+                                return Course.getcourse().get({id : $stateParams.cid}).$promise;
+                            }]
+                        }
+                    }).result.then(function() {
+                        $state.go('copyuser', null, { reload: 'copyuser' });
+                    }, function() {
+                        $state.go('^');
+                    });
+                }]
+            })
         .state('copyuser.delete', {
             parent: 'copyuser',
             url: '/{id}/delete',
@@ -147,7 +175,7 @@
                     size: 'md',
                     resolve: {
                         entity: ['Copyuser', function(Copyuser) {
-                            return Copyuser.get({id : $stateParams.id}).$promise;
+                            return Copyuser.getcopyuser().get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
