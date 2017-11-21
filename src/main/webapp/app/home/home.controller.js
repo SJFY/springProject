@@ -49,7 +49,15 @@
                     for(var i = 0; i < vm.pics.length; i ++) {
                         vm.courses[vm.idx[vm.pics[i].coursepic.id]].picture.push(vm.pics[i]);
                     }
-                     vm.tmp = vm.courses[0];
+                    vm.tmp1 = vm.courses[0];
+                    vm.tmp2 = vm.courses[1];
+                    vm.tmp3 = vm.courses[2];
+                    vm.tmp4 = vm.courses[3];
+                    vm.tmp5 = vm.courses[4];
+                    vm.tmp6 = vm.courses[5];
+                    vm.tmp7 = vm.courses[6];
+                    vm.tmp8 = vm.courses[7];
+                    vm.tmp9 = vm.courses[8];
 
                     // vm.len = vm.courses[0].name;
                 });
