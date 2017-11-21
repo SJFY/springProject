@@ -19,4 +19,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Query("select comment from Comment comment where comment.targetcourse.id = ?#{#Id}")
     List<Comment> findByCourseId(@Param("Id") Long Id);
 
+    @Query("select comment from Comment comment where comment.writter.id = ?#{#Id}")
+    List<Comment> findByCuId(@Param("Id") Long Id);
+
 }

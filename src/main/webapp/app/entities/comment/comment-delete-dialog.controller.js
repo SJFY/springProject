@@ -19,7 +19,7 @@
         }
 
         function confirmDelete (id) {
-            Comment.delete({id: id},
+            Comment.getcomment().delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });

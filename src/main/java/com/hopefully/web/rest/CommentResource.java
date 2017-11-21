@@ -111,6 +111,18 @@ public class CommentResource {
         return commentRepository.findByCourseId(id);
     }
 
+    /**
+     * GET  /cucomments/{id} : get the comments of one course.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of comments in body
+     */
+    @GetMapping("/cucomments/{id}")
+    @Timed
+    public List<Comment> getCuComments(@PathVariable Long id) {
+        log.debug("REST request to get all Comments");
+        return commentRepository.findByCuId(id);
+    }
+
 
     /**
      * GET  /comments/:id : get the "id" comment.

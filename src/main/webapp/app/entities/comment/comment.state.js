@@ -42,7 +42,7 @@
             },
             resolve: {
                 entity: ['$stateParams', 'Comment', function($stateParams, Comment) {
-                    return Comment.get({id : $stateParams.id}).$promise;
+                    return Comment.getcomment().get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
@@ -69,7 +69,7 @@
                     size: 'lg',
                     resolve: {
                         entity: ['Comment', function(Comment) {
-                            return Comment.get({id : $stateParams.id}).$promise;
+                            return Comment.getcomment().get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -108,6 +108,34 @@
                 });
             }]
         })
+            .state('comment.newuc', {
+                parent: 'comment',
+                url: '/{id}/{cid}/new',
+                data: {
+                    authorities: ['ROLE_USER']
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/comment/comment-adduc.html',
+                        controller: 'CommentAddController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['Copyuser', function(Copyuser) {
+                                return Copyuser.getcopyuser().get({id : $stateParams.id}).$promise;
+                            }],
+                            entityc: ['Course', function(Course) {
+                                return Course.getcourse().get({id : $stateParams.cid}).$promise;
+                            }]
+                        }
+                    }).result.then(function() {
+                        $state.go('comment', null, { reload: 'comment' });
+                    }, function() {
+                        $state.go('comment');
+                    });
+                }]
+            })
         .state('comment.edit', {
             parent: 'comment',
             url: '/{id}/edit',
@@ -123,7 +151,7 @@
                     size: 'lg',
                     resolve: {
                         entity: ['Comment', function(Comment) {
-                            return Comment.get({id : $stateParams.id}).$promise;
+                            return Comment.getcomment().get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -147,7 +175,7 @@
                     size: 'md',
                     resolve: {
                         entity: ['Comment', function(Comment) {
-                            return Comment.get({id : $stateParams.id}).$promise;
+                            return Comment.getcomment().get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {

@@ -4,8 +4,8 @@
     angular
         .module('hopefullyApp')
         .controller('AllCoursesController', AllCoursesController);
-    AllCoursesController.$inject = ['DataUtils', 'Course', 'CourseSearch', 'Pic', 'Principal', 'Copyuser'];
-    function AllCoursesController(DataUtils, Course, CourseSearch, Pic, Principal, Copyuser) {
+    AllCoursesController.$inject = ['DataUtils', 'Course', 'CourseSearch', 'Pic', 'Principal', 'Copyuser', 'Comment'];
+    function AllCoursesController(DataUtils, Course, CourseSearch, Pic, Principal, Copyuser, Comment) {
 
         var vm = this;
 
@@ -32,12 +32,15 @@
             Course.getall().query(function(result) {
                 vm.courses = result;
                 vm.searchQuery = null;
+                vm.len = vm.courses.length;
 
 
                 vm.idx = new Array(vm.courses[vm.courses.length - 1].id+1);
                 for (var i = 0; i < vm.courses.length; i ++) {
                     vm.idx[vm.courses[i].id] = i;
                     vm.courses[i].picture = [];
+                    vm.courses[i].comment = [];
+
                 }
 
                 Pic.getpic().query(function (result) {
@@ -45,9 +48,18 @@
                     for(var i = 0; i < vm.pics.length; i ++) {
                         vm.courses[vm.idx[vm.pics[i].coursepic.id]].picture.push(vm.pics[i]);
                     }
-                    vm.tmp = vm.courses[2].picture.length;
+                   // vm.tmp = vm.courses[1].picture.length;
                    // vm.len = vm.courses[0].name;
                 });
+
+                Comment.getcomment().query(function (result) {
+                    vm.comments = result;
+                    for (var i = 0; i < vm.comments.length; i ++) {
+                        vm.courses[vm.idx[vm.comments[i].targetcourse.id]].comment.push(vm.comments[i]);
+                    }
+                    //vm.courses[2].comment is an array
+                    vm.tmp = vm.courses[2].comment[0].review;
+                })
 
 
 

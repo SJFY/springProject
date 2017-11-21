@@ -9,18 +9,36 @@
     function Comment ($resource) {
         var resourceUrl =  'api/comments/:id';
 
-        return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
-            'get': {
-                method: 'GET',
-                transformResponse: function (data) {
-                    if (data) {
-                        data = angular.fromJson(data);
+        var commentFac = {};
+
+        commentFac.getcomment = function(){
+            return $resource(resourceUrl, {}, {
+                'query': { method: 'GET', isArray: true},
+                'get': {
+                    method: 'GET',
+                    transformResponse: function (data) {
+                        if (data) {
+                            data = angular.fromJson(data);
+                        }
+                        return data;
                     }
-                    return data;
-                }
-            },
-            'update': { method:'PUT' }
-        });
+                },
+                'update': { method:'PUT' }
+            });
+        };
+
+        commentFac.getbycourse = function() {
+            return $resource( 'api/coursecomments/:id', {}, {
+                'query': {method: 'GET', isArray: true}
+            });
+        };
+
+        commentFac.getbycu = function () {
+            return $resource('api/cucomments/:id', {}, {
+                'query' : {method: 'GET', isArray: true}
+            });
+        }
+
+        return commentFac;
     }
 })();

@@ -21,7 +21,7 @@
         loadAll();
 
         function loadAll() {
-            Comment.query(function(result) {
+            Comment.getcomment().query(function(result) {
                 vm.comments = result;
                 vm.searchQuery = null;
             });

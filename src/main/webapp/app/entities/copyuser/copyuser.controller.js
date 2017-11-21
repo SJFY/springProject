@@ -5,9 +5,9 @@
         .module('hopefullyApp')
         .controller('CopyuserController', CopyuserController);
 
-    CopyuserController.$inject = ['DataUtils', 'Copyuser', 'CopyuserSearch', 'Principal', 'Course'];
+    CopyuserController.$inject = ['DataUtils', 'Copyuser', 'CopyuserSearch', 'Principal', 'Course', 'Comment'];
 
-    function CopyuserController(DataUtils, Copyuser, CopyuserSearch, Principal, Course) {
+    function CopyuserController(DataUtils, Copyuser, CopyuserSearch, Principal, Course, Comment) {
 
         var vm = this;
 
@@ -24,17 +24,25 @@
         Principal.identity().then(function(account) {
             vm.account = account;
             vm.isAuthenticated = Principal.isAuthenticated;
+            Copyuser.getbyuser().get({id:vm.account.id}, function (result) {
+                vm.copyuser = result;
+                vm.tmp = vm.copyuser.id;
+                Comment.getbycu().query({id: vm.copyuser.id}, function (result) {
+                    vm.cucomment = result;
+                    vm.searchQuery = null;
+                })
+            })
         });
 
         function loadAll() {
             Course.getcourse().query(function(result) {
                 vm.courses = result;
                 vm.searchQuery = null;
-                Copyuser.getbyuser().get({id:vm.account.id}, function (result) {
-                    vm.copyuser = result;
 
-                })
             });
+
+
+
             // Copyuser.getcopyuser().query(function(result) {
             //     vm.copyusers = result;
             //     vm.searchQuery = null;

@@ -17,7 +17,7 @@
         vm.save = save;
         vm.copyusers = Copyuser.getcopyuser().query();
         vm.courses = Course.getcourse().query();
-        vm.comments = Comment.query();
+        vm.comments = Comment.getcomment().query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -30,9 +30,9 @@
         function save () {
             vm.isSaving = true;
             if (vm.comment.id !== null) {
-                Comment.update(vm.comment, onSaveSuccess, onSaveError);
+                Comment.getcomment().update(vm.comment, onSaveSuccess, onSaveError);
             } else {
-                Comment.save(vm.comment, onSaveSuccess, onSaveError);
+                Comment.getcomment().save(vm.comment, onSaveSuccess, onSaveError);
             }
         }
 
