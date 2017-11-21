@@ -1,8 +1,56 @@
 <div ng-cloak>
-    <div class="row">
+    <div class="jumbotron">
+       <h1>Tutorhub</h1>
+          <p style="padding:40px;"></p>
+          <p>Tutorhub builds bridge between tutorial provider and people who want to learn skills. Skill providers earn money by providing tutorials of their skills. People can search on our website to find the skill they want to learn and the level of skill providers they want. </p>
+    </div>
+    <div class="jumbotron1">
+        <div class = "jumbotron1-1">
+            <div class = "col-md-4 jumbotron1-1-image">
+                <p>this is a pic</p>
+            </div>
+            <div class="col-md-8 jumbotron1-1-text">
+                <p>Ask question and share experiences</p>
+            </div>
+        </div>
+    </div>
+    <div class="home-course">
+        <div class="col-6 col-md-4">
+            <a ng-if="vm.tmp.picture[0].image" ng-click="vm.openFile(vm.tmp.picture[0].imageContentType, vm.tmp.picture[0].image)">
+                <img data-ng-src="{{'data:' + vm.tmp.picture[0].imageContentType + ';base64,' + vm.tmp.picture[0].image}}" style="max-height: 30px;" alt="pic image"/>
+            </a>
+                <h4>course name, {{vm.tmp.picture.length}}</h4>
+            </a>
+            <p>description</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <a href="">
+                <img class=""/>
+                <h4>course name</h4>
+            </a>
+            <p>description</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <a href="">
+                <img class=""/>
+                <h4>course name</h4>
+            </a>
+            <p>description</p>
+        </div>
+        <div class="col-6 col-md-4">
+            <a href="">
+                <img class=""/>
+                <h4>course name</h4>
+            </a>
+            <p>description</p>
+        </div>
+    </div>
+
+        <!--
         <div class="col-md-4">
             <span class="hipster img-responsive img-rounded"></span>
         </div>
+
         <div class="col-md-8">
             <h1>Welcome, Java Hipster!</h1>
             <p class="lead">This is your homepage</p>
@@ -37,5 +85,6 @@
              <span>If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener">GitHub</a>!
             </p>
         </div>
-    </div>
+        -->
+
 </div>
