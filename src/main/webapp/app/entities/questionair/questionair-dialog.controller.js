@@ -17,7 +17,7 @@
         vm.save = save;
         vm.courses = Course.getcourse().query();
         vm.users = User.query();
-        vm.questionairs = Questionair.query();
+        vm.questionairs = Questionair.getque().query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -30,9 +30,9 @@
         function save () {
             vm.isSaving = true;
             if (vm.questionair.id !== null) {
-                Questionair.update(vm.questionair, onSaveSuccess, onSaveError);
+                Questionair.getque().update(vm.questionair, onSaveSuccess, onSaveError);
             } else {
-                Questionair.save(vm.questionair, onSaveSuccess, onSaveError);
+                Questionair.getque().save(vm.questionair, onSaveSuccess, onSaveError);
             }
         }
 

@@ -27,6 +27,34 @@
     </div>
 </div>
 </br>
+<h1>this is our current user {{vm.tmp}}</h1>
+<div class="container col-xs-12" ng-controller="AllCoursesController">
+    <ul class="nav nav-tabs">
+        <li ng-class= "active">
+            <a ng-click="vm.filttext.category = ''" role="tab">All</a>
+        </li>
+        <li ng-class= "active">
+            <a ng-click="vm.filttext.category = 'Fitness'" role="tab">Fitness</a>
+        </li>
+        <li ng-class= "active">
+            <a ng-click="vm.filttext.category = 'Music'" role="tab">Music</a>
+        </li>
+
+        <li ng-class= "active">
+            <a ng-click="vm.filttext.category = 'Language'" role="tab">Language</a>
+        </li>
+        <li ng-class= "active">
+            <a ng-click="vm.filttext.category = 'IT'" role="tab">IT</a>
+        </li>
+        <li ng-class= "active">
+            <a ng-click="vm.filttext.category = 'Academic'" role="tab">Academic</a>
+        </li>
+        <li ng-class= "active">
+            <a ng-click="vm.filttext.category = 'Lifestyle'" role="tab">Lifestyle</a>
+        </li>
+
+    </ul>
+</div>
 <h1>we have {{vm.len}} courses right now, choose the right one for you!</h1>
 <div class="table-responsive">
     <table class="jh-table table table-striped">
@@ -44,7 +72,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="course in vm.courses track by course.id">
+        <tr ng-repeat="course in vm.courses | filter: vm.filttext track by course.id ">
             <td><a ui-sref="course-detail-readOnly({id:course.id})">{{course.id}}</a></td>
             <td>{{course.name}}</td>
             <td>{{course.price}}</td>

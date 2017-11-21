@@ -101,6 +101,18 @@ public class QuestionairResource {
         }
 
     /**
+     * GET  /cuquestionairs/:id : get all the questionairs for a specific course.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of questionairs in body
+     */
+    @GetMapping("/cuquestionairs/{id}")
+    @Timed
+    public List<Questionair> getCuQuestionairs(@PathVariable Long id) {
+        log.debug("REST request to get all Questionairs");
+        return questionairRepository.findByCourseId(id);
+    }
+
+    /**
      * GET  /questionairs/:id : get the "id" questionair.
      *
      * @param id the id of the questionair to retrieve

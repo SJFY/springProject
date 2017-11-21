@@ -42,7 +42,7 @@
             },
             resolve: {
                 entity: ['$stateParams', 'Questionair', function($stateParams, Questionair) {
-                    return Questionair.get({id : $stateParams.id}).$promise;
+                    return Questionair.getque().get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
@@ -69,7 +69,7 @@
                     size: 'lg',
                     resolve: {
                         entity: ['Questionair', function(Questionair) {
-                            return Questionair.get({id : $stateParams.id}).$promise;
+                            return Questionair.getque().get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -122,7 +122,7 @@
                     size: 'lg',
                     resolve: {
                         entity: ['Questionair', function(Questionair) {
-                            return Questionair.get({id : $stateParams.id}).$promise;
+                            return Questionair.getque().get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -146,7 +146,7 @@
                     size: 'md',
                     resolve: {
                         entity: ['Questionair', function(Questionair) {
-                            return Questionair.get({id : $stateParams.id}).$promise;
+                            return Questionair.getque().get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {

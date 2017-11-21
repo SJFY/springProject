@@ -80,7 +80,7 @@
                 views: {
                     'content@': {
                         templateUrl: 'app/entities/course/course-detail-readonly.html',
-                        controller: 'CourseDetailController',
+                        controller: 'CourseDetailReadController',
                         controllerAs: 'vm'
                     }
                 },
@@ -90,6 +90,9 @@
                     }],
                     pics: ['$stateParams', 'Pic', function($stateParams, Pic) {
                         return Pic.coursepic().query({id : $stateParams.id}).$promise;
+                    }],
+                    comments: ['$stateParams', 'Comment', function($stateParams, Comment) {
+                        return Comment.getbycourse().query({id : $stateParams.id}).$promise;
                     }],
                     previousState: ["$state", function ($state) {
                         var currentStateData = {
@@ -179,9 +182,9 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('course', null, { reload: 'course' });
+                    $state.go('copyuser', null, { reload: 'copyuser' });
                 }, function() {
-                    $state.go('course');
+                    $state.go('copyuser');
                 });
             }]
         })

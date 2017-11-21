@@ -5,9 +5,9 @@
         .module('hopefullyApp')
         .controller('CourseDialogController', CourseDialogController);
 
-    CourseDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Course', 'Copyuser', 'User'];
+    CourseDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Course', 'Copyuser', 'User', 'Principal'];
 
-    function CourseDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Course, Copyuser, User) {
+    function CourseDialogController ($timeout, $scope, $stateParams, $uibModalInstance, DataUtils, entity, Course, Copyuser, User, Principal) {
         var vm = this;
 
         vm.course = entity;
@@ -20,6 +20,14 @@
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
+        });
+
+        var copyAccount = function (account) {
+            return account;
+        };
+
+        Principal.identity().then(function(account) {
+            vm.course.teacher = copyAccount(account);
         });
 
         function clear () {

@@ -21,7 +21,7 @@
         loadAll();
 
         function loadAll() {
-            Questionair.query(function(result) {
+            Questionair.getque().query(function(result) {
                 vm.questionairs = result;
                 vm.searchQuery = null;
             });

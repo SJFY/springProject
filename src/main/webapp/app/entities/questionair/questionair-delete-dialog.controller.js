@@ -19,7 +19,7 @@
         }
 
         function confirmDelete (id) {
-            Questionair.delete({id: id},
+            Questionair.getque().delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });

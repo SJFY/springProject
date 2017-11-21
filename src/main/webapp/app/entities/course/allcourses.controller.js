@@ -4,8 +4,8 @@
     angular
         .module('hopefullyApp')
         .controller('AllCoursesController', AllCoursesController);
-    AllCoursesController.$inject = ['DataUtils', 'Course', 'CourseSearch', 'Pic', 'Principal', 'Copyuser', 'Comment'];
-    function AllCoursesController(DataUtils, Course, CourseSearch, Pic, Principal, Copyuser, Comment) {
+    AllCoursesController.$inject = ['$scope', 'DataUtils', 'Course', 'CourseSearch', 'Pic', 'Principal', 'Copyuser', 'Comment'];
+    function AllCoursesController($scope, DataUtils, Course, CourseSearch, Pic, Principal, Copyuser, Comment) {
 
         var vm = this;
 
@@ -15,18 +15,71 @@
         vm.byteSize = DataUtils.byteSize;
         vm.clear = clear;
         vm.search = search;
+     //   vm.select = select;
         vm.loadAll = loadAll;
+        vm.filttext = {};
+      //  vm.filttext.category = "Fitness";
 
         loadAll();
 
         Principal.identity().then(function(account) {
             vm.account = account;
+            vm.tmp = vm.account;
             vm.isAuthenticated = Principal.isAuthenticated;
             Copyuser.getbyuser().get({id:vm.account.id}, function (result) {
                 vm.copyuser = result;
 
             })
         });
+
+        // function select (setTab) {
+        //     if (setTab === 2) {
+        //         vm.tmp = "Fitness";
+        //     }
+        //     if (setTab === 3) {
+        //         vm.filttext.category = "Music";
+        //     }
+        //     if (setTab === 4) {
+        //         vm.filttext.category = "Language";
+        //     }
+        //     if (setTab === 5) {
+        //         vm.filttext.category = "IT";
+        //     }
+        //     if (setTab === 6) {
+        //         vm.filttext.category = "Academic";
+        //     }
+        //     if (setTab === 7) {
+        //         vm.filttext.category = "Lifestyle";
+        //     }
+        //     else {
+        //         vm.filttext.category = "";
+        //     }
+        //    // vm.tmp = vm.filttext.category;
+        // };
+
+        // $scope.select = function(setTab) {
+        //     if (setTab === 2) {
+        //         vm.filttext.category = "Fitness";
+        //     }
+        //     if (setTab === 3) {
+        //         vm.filttext.category = "Music";
+        //     }
+        //     if (setTab === 4) {
+        //         vm.filttext.category = "Language";
+        //     }
+        //     if (setTab === 5) {
+        //         vm.filttext.category = "IT";
+        //     }
+        //     if (setTab === 6) {
+        //         vm.filttext.category = "Academic";
+        //     }
+        //     if (setTab === 7) {
+        //         vm.filttext.category = "Lifestyle";
+        //     }
+        //     else {
+        //         vm.filttext.category = "";
+        //     }
+        // };
 
         function loadAll() {
             Course.getall().query(function(result) {
@@ -58,7 +111,7 @@
                         vm.courses[vm.idx[vm.comments[i].targetcourse.id]].comment.push(vm.comments[i]);
                     }
                     //vm.courses[2].comment is an array
-                    vm.tmp = vm.courses[2].comment[0].review;
+                   // vm.tmp = vm.courses[2].comment[0].review;
                 })
 
 
