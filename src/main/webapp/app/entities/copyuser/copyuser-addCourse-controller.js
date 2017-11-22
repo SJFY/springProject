@@ -17,6 +17,21 @@
         vm.openFile = DataUtils.openFile;
         vm.save = save;
 
+        // vm.courses = newc;
+        // if (vm.courses.students === null) {
+        //     vm.tmp = true;
+        //     vm.courses.students = [];
+        //     vm.courses.students.push(entity);
+        //     vm.len = vm.courses.students.length;
+        // }
+        // else {
+        //     vm.tmp = false;
+        //     vm.courses.students.push(entity);
+        //     vm.len = vm.courses.students.length;
+        // }
+        // vm.courses.students = [];
+        // vm.tmp = vm.courses.students.length;
+
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
@@ -36,8 +51,8 @@
         function save () {
             vm.isSaving = true;
             if (vm.copyuser.id !== null) {
-
                 Copyuser.getcopyuser().update(vm.copyuser, onSaveSuccess, onSaveError);
+             //   Course.getcourse().update(vm.courses, onSaveSuccess, onSaveError);
             } else {
                 Copyuser.getcopyuser().save(vm.copyuser, onSaveSuccess, onSaveError);
             }

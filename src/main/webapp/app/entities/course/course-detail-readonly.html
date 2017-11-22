@@ -33,7 +33,6 @@
             {{vm.course.teacher.login}}
         </dd>
     </dl>
-
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
@@ -93,11 +92,11 @@
                 <th><span>Writter</span></th>
                 <th><span>Targetcourse</span></th>
                 <th><span>Parent</span></th>
-                <th></th>
+                <th><span>Time</span></th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="comment in vm.coms track by comment.id">
+            <tr ng-repeat="comment in vm.coms |orderBy:createdDate:true track by comment.id">
                 <td><a ui-sref="comment-detail({id:comment.id})">{{comment.id}}</a></td>
                 <td>{{comment.rating}}</td>
                 <td>{{comment.review}}</td>
@@ -110,6 +109,7 @@
                 <td>
                     <a ui-sref="comment-detail({id:comment.parent.id})">{{comment.parent.id}}</a>
                 </td>
+                <td>{{comment.createdDate}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
@@ -136,6 +136,71 @@
             </tbody>
         </table>
     </div>
+    <h1>Q & A</h1>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+            <tr>
+                <th><span>ID</span></th>
+                <th><span>View</span></th>
+                <th><span>Course</span></th>
+                <th><span>User</span></th>
+                <th><span>Questionair</span></th>
+                <th><span>Time</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="questionair in vm.questions track by questionair.id">
+                <td><a ui-sref="questionair-detail({id:questionair.id})">{{questionair.id}}</a></td>
+                <td>{{questionair.view}}</td>
+                <td>
+                    <a ui-sref="course-detail({id:questionair.course.id})">{{questionair.course.id}}</a>
+                </td>
+                <td>
+                    {{questionair.user != null ? questionair.user.login : 'Anonymousr User' }}
+                </td>
+                <td>
+                    <a ui-sref="questionair-detail({id:questionair.questionair.id})">{{questionair.questionair.view}} </a>
+                </td>
+                <td>{{questionair.createdDate}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                ui-sref="questionair-detail({id:questionair.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-sm-down"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="questionair.edit({id:questionair.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-sm-down"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="questionair.delete({id:questionair.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                            <span class="hidden-sm-down"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="course-detail-replyque({id:vm.course.id, qid:questionair.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Reply</span>
+                            <span class="hidden-sm-down"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <h1>{{vm.course.id}}</h1>
+    <button type="submit"
+            ui-sref="course-detail-askque({id:vm.course.id})"
+            class="btn btn-info">
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Ask a question</span>
+    </button>
 
     <button type="submit"
             ui-sref="{{ vm.previousState }}"

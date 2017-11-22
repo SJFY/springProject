@@ -175,11 +175,11 @@
             <th><span>Writter</span></th>
             <th><span>Targetcourse</span></th>
             <th><span>Parent</span></th>
-            <th></th>
+            <th><span>Created time</span></th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="comment in vm.comments track by comment.id">
+        <tr ng-repeat="comment in vm.comments | orderBy:createdDate:true track by comment.id">
             <td><a ui-sref="comment-detail({id:comment.id})">{{comment.id}}</a></td>
             <td>{{comment.rating}}</td>
             <td>{{comment.review}}</td>
@@ -192,6 +192,7 @@
             <td>
                 <a ui-sref="comment-detail({id:comment.parent.id})">{{comment.parent.id}}</a>
             </td>
+            <td>{{comment.createdDate}}</td>
             <td class="text-right">
                 <div class="btn-group flex-btn-group-container">
                     <button type="submit"

@@ -83,6 +83,63 @@
         </table>
     </div>
 
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+            <tr>
+                <th><span>ID</span></th>
+                <th><span>Avater</span></th>
+                <th><span>User</span></th>
+                <th><span>Course</span></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="copyuser in vm.course.students track by copyuser.id">
+
+                <td><a ui-sref="copyuser-detail({id:copyuser.id})">{{copyuser.id}}</a></td>
+                <td>
+                    <a ng-if="vm.copyuser.avater" ng-click="vm.openFile(vm.copyuser.avaterContentType, vm.copyuser.avater)">
+                        <img data-ng-src="{{'data:' + vm.copyuser.avaterContentType + ';base64,' + vm.copyuser.avater}}" style="max-height: 30px;" alt="copyuser image"/>
+                    </a>
+                    <span ng-if="vm.copyuser.avater">{{vm.copyuser.avaterContentType}}, {{vm.byteSize(vm.copyuser.avater)}}</span>
+                </td>
+                <td>
+                    {{copyuser.user.login}}
+                </td>
+                <td>
+                        <span ng-repeat="course in copyuser.courses">
+                            <a class="form-control-static" ui-sref="course-detail({id: course.id})">{{course.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                ui-sref="copyuser-detail({id:copyuser.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-sm-down"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="copyuser.edit({id:copyuser.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-sm-down"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="copyuser.delete({id:copyuser.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                            <span class="hidden-sm-down"></span>
+                        </button>
+                    </div>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">

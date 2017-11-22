@@ -94,6 +94,9 @@
                     comments: ['$stateParams', 'Comment', function($stateParams, Comment) {
                         return Comment.getbycourse().query({id : $stateParams.id}).$promise;
                     }],
+                    ques: ['$stateParams', 'Questionair', function($stateParams, Questionair) {
+                        return Questionair.courseque().query({id : $stateParams.id}).$promise;
+                    }],
                     previousState: ["$state", function ($state) {
                         var currentStateData = {
                             name: $state.current.name || 'course',
@@ -104,6 +107,63 @@
                     }]
                 }
             })
+            .state('course-detail-askque', {
+                parent:'course-detail-readOnly',
+                url: '/askque',
+                data: {
+                    authorities: []
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/course/askque.html',
+                        controller: 'CourseAskQueController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['Course', function(Course) {
+                                return Course.getcourse().get({id : $stateParams.id}).$promise;
+                            }],
+                            que: ['Questionair', function(Questionair) {
+                                return null;
+                            }]
+                        }
+                    }).result.then(function() {
+                        $state.go('^', {}, { reload: true });
+                    }, function() {
+                        $state.go('^');
+                    });
+                }]
+            })
+            .state('course-detail-replyque', {
+                parent:'course-detail-readOnly',
+                url: '/replyque/{qid}',
+                data: {
+                    authorities: []
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'app/entities/course/askque.html',
+                        controller: 'CourseAskQueController',
+                        controllerAs: 'vm',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            entity: ['Course', function(Course) {
+                                return Course.getcourse().get({id : $stateParams.id}).$promise;
+                            }],
+                            que: ['Questionair', function(Questionair) {
+                                return Questionair.getque().get({id : $stateParams.qid}).$promise;
+                            }]
+                        }
+                    }).result.then(function() {
+                        $state.go('^', {}, { reload: true });
+                    }, function() {
+                        $state.go('^');
+                    });
+                }]
+            })
+
         .state('course-detail.edit', {
             parent: 'course-detail',
             url: '/detail/edit',
