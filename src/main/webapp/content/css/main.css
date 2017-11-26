@@ -4,6 +4,449 @@ body {
     color: #333;
 }
 
+/*new css*/
+/*
+-----------------------------------
+    Code snippet by @maridlcrmn
+    Credits images: www.unsplash.com
+-----------------------------------
+*/
+/*css for carsol*/
+#thumbnail-preview-indicators {
+    position: relative;
+    overflow: hidden;
+}
+#thumbnail-preview-indicators .slides .slide-1,
+#thumbnail-preview-indicators .slides .slide-2,
+#thumbnail-preview-indicators .slides .slide-3 {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+#thumbnail-preview-indicators,
+#thumbnail-preview-indicators .slides,
+#thumbnail-preview-indicators .slides .slide-1,
+#thumbnail-preview-indicators .slides .slide-2,
+#thumbnail-preview-indicators .slides .slide-3 {
+    height: 640px;
+}
+#thumbnail-preview-indicators .slides .slide-1 {
+    background-image: url(https://s3.amazonaws.com/ooomf-com-files/wdXqHcTwSTmLuKOGz92L_Landscape.jpg);
+}
+#thumbnail-preview-indicators .slides .slide-2 {
+    background-image: url(https://s3.amazonaws.com/ooomf-com-files/tU3ptNgGSP6U2fE67Gvy_SYDNEY-162.jpg);
+}
+#thumbnail-preview-indicators .slides .slide-3 {
+    background-image: url(https://s3.amazonaws.com/ooomf-com-files/mtNrf7oxS4uSxTzMBWfQ_DSC_0043.jpg);
+}
+#thumbnail-preview-indicators .carousel-inner .item .carousel-caption {
+    top: 20%;
+    bottom: inherit;
+}
+#thumbnail-preview-indicators .carousel-indicators li,
+#thumbnail-preview-indicators .carousel-indicators li.active {
+    position: relative;
+    /*width: 100px;*/
+    /*height: 8px;*/
+}
+#thumbnail-preview-indicators .carousel-indicators li > .thumbnail {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    display: none;
+    opacity: 0;
+    left: 50%;
+    margin-top: -80px;
+    margin-left: -50px;
+}
+#thumbnail-preview-indicators .carousel-indicators li:hover > .thumbnail,
+#thumbnail-preview-indicators .carousel-indicators li.active > .thumbnail {
+    display: block;
+    opacity: .8;
+}
+#thumbnail-preview-indicators .carousel-indicators li.active > .thumbnail:hover{
+    opacity: 1;
+}
+@media screen and (max-width : 480px) {
+    #thumbnail-preview-indicators .carousel-indicators li,
+    #thumbnail-preview-indicators .carousel-indicators li.active {
+        width: 50px;
+        height: 8px;
+        position: relative;
+    }
+    #thumbnail-preview-indicators .carousel-indicators li > .thumbnail {
+        width: 50px;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -25px;
+    }
+}
+.box{
+    width:100%;
+    height:640px;
+    background-color:transparent;
+}
+/* css for main page panel*/
+@import url("http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+.panel-image {
+    position: relative;
+}
+.panel-image img.panel-image-preview {
+    width: 100%;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.panel-image label {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+.panel-heading ~ .panel-image img.panel-image-preview {
+    border-radius: 0px;
+}
+
+.panel-body {
+    overflow: hidden;
+    height: 200px;
+}
+
+.panel-image ~ input[type=checkbox] {
+    position:absolute;
+    top:- 30px;
+    z-index: -1;
+}
+
+.panel-image ~ input[type=checkbox] ~ .panel-body {
+    height: 0px;
+    padding: 0px;
+}
+
+.panel-image ~ input[type=checkbox]:checked ~ .panel-body {
+    height: auto;
+    padding: 15px;
+}
+
+.panel-image ~ .panel-footer a {
+    padding: 0px 10px;
+    font-size: 1.3em;
+    color: rgb(100, 100, 100);
+}
+
+/*css for quote*/
+/* carousel */
+#quote-carousel
+{
+    padding: 0 10px 30px 10px;
+    margin-top: 30px;
+}
+
+/* Control buttons  */
+#quote-carousel .carousel-control
+{
+    background: none;
+    color: #222;
+    font-size: 2.3em;
+    text-shadow: none;
+    margin-top: 30px;
+}
+/* Previous button  */
+#quote-carousel .carousel-control.left
+{
+    left: -12px;
+}
+/* Next button  */
+#quote-carousel .carousel-control.right
+{
+    right: -12px !important;
+}
+/* Changes the position of the indicators */
+#quote-carousel .carousel-indicators
+{
+    right: 50%;
+    top: auto;
+    bottom: 0px;
+    /*margin-right: -19px;*/
+}
+/* Changes the color of the indicators */
+#quote-carousel .carousel-indicators li
+{
+    background: #c0c0c0;
+}
+#quote-carousel .carousel-indicators .active
+{
+    background: #333333;
+}
+#quote-carousel img
+{
+    width: 250px;
+    height: 100px
+}
+/* End carousel */
+
+.item blockquote {
+    border-left: none;
+    margin: 0;
+}
+
+.item blockquote img {
+    margin-bottom: 10px;
+}
+
+.item blockquote p:before {
+    content: "\f10d";
+    font-family: 'Fontawesome';
+    float: left;
+    margin-right: 10px;
+}
+
+/**
+  MEDIA QUERIES
+*/
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #quote-carousel
+    {
+        margin-bottom: 0;
+        padding: 0 40px 30px 40px;
+    }
+
+}
+
+/* Small devices (tablets, up to 768px) */
+@media (max-width: 768px) {
+
+    /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+
+    #quote-carousel .carousel-indicators {
+        bottom: -20px !important;
+    }
+    #quote-carousel .carousel-indicators li {
+        display: inline-block;
+        margin: 0px 5px;
+        width: 15px;
+        height: 15px;
+    }
+    #quote-carousel .carousel-indicators li.active {
+        margin: 0px 5px;
+        width: 20px;
+        height: 20px;
+    }
+}
+/*gallery css*/
+.gallery-title
+{
+    font-size: 36px;
+    color: #42B32F;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.gallery-title:after {
+    content: "";
+    position: absolute;
+    width: 7.5%;
+    left: 46.5%;
+    height: 45px;
+}
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #42B32F;
+    margin-bottom: 30px;
+
+}
+.filter-button:hover
+{
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #42B32F;
+
+}
+.btn-default:active .filter-button:active
+{
+    background-color: #42B32F;
+    color: white;
+}
+
+.port-image
+{
+    width: 100%;
+}
+
+.gallery_product
+{
+    margin-bottom: 30px;
+}
+
+.input-group
+{
+    width:100px;
+}
+
+/*Q & A css*/
+
+
+     /*a, a:hover {*/
+     /*-webkit-transition: .25s color linear;*/
+     /*transition: .25s color linear;*/
+     /*}*/
+
+     /*img {*/
+     /*-webkit-filter: grayscale(100%);*/
+     /*filter: grayscale(100%);*/
+     /*}*/
+
+ article time, article:hover time,
+ .icon-rocknroll, .like-count {
+     -webkit-transition: .25s opacity linear;
+     transition: .25s opacity linear;
+ }
+
+/*
+ |---------------------------------
+ |
+ | Project Start
+ |
+ |---------------------------------
+ */
+/*html {*/
+/*font-size: 16px;*/
+/*}*/
+/*html body {*/
+/*color: #444;*/
+/*font-family: 'Source Sans Pro', sans-serif;*/
+/*font-size: 1rem;*/
+/*font-weight: 300;*/
+/*line-height: 1.65;*/
+/*margin: 50px 0;*/
+/*padding: 0 25px;*/
+/*}*/
+html body .comments {
+    max-width: 950px;
+    margin: 50px auto;
+}
+html body .comments article {
+    position: relative;
+    border-bottom: solid 1px rgba(178, 179, 153, 0.125);
+    margin: 0 auto 50px auto;
+}
+html body .comments article:last-child {
+    border: none;
+}
+html body .comments article:hover time {
+    opacity: 1;
+}
+html body .comments article img {
+    position: absolute;
+    top: -10px;
+    left: -75px;
+    width: 50px;
+    height: 50px;
+    border-width: 0;
+    border-radius: 100%;
+}
+html body .comments article h4 {
+    display: inline-block;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+html body .comments article h4 a {
+    color: #404040;
+    text-transform: lowercase;
+    text-decoration: none;
+}
+html body .comments article h4 a:hover {
+    color: #BFBFA8;
+}
+html body .comments article time {
+    color: #545454;
+    margin-left: 1rem;
+    text-transform: uppercase;
+}
+html body .comments article .icon-rocknroll {
+    color: #545454;
+    font-size: .85rem;
+}
+html body .comments article .icon-rocknroll:hover {
+    opacity: .5;
+}
+html body .comments article time,
+html body .comments article .like-count,
+html body .comments article .icon-rocknroll {
+    font-size: 1rem;
+    opacity: 0;
+}
+html body .comments article time, html body .comments article .like-count {
+    font-weight: 300;
+}
+html body .comments article p {
+    margin-bottom: 50px;
+}
+html body .comments article p .reply {
+    color: #BFBFA8;
+    cursor: pointer;
+}
+html body .comments article .active {
+    opacity: 1;
+}
+
+.like-data {
+    float: right;
+}
+
+.icon-rocknroll {
+    background: none;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    margin: 0 .125rem 0 0;
+    padding: 0;
+}
+
+.comments article:hover .icon-rocknroll,
+.comments article:hover .like-count {
+    opacity: 1;
+}
+
+@media (max-width: 650px) {
+    .comments {
+        width: 100%;
+        padding: 0 1rem;
+    }
+    .comments article {
+        width: 90%;
+    }
+    .comments article #profile-photo {
+        position: relative;
+        left: -1rem;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .comments article h4 {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .comments article h4 time {
+        display: block;
+        margin-left: 0 !important;
+        opacity: .5 !important;
+    }
+}
+
+
+/*new css end here*/
+
 /* ==========================================================================
 Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
 ========================================================================== */

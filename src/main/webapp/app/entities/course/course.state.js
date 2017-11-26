@@ -97,6 +97,9 @@
                     ques: ['$stateParams', 'Questionair', function($stateParams, Questionair) {
                         return Questionair.courseque().query({id : $stateParams.id}).$promise;
                     }],
+                    anony: ['$stateParams', 'Copyuser', function($stateParams, Copyuser) {
+                        return Copyuser.getcopyuser().get({id : 15}).$promise;
+                    }],
                     previousState: ["$state", function ($state) {
                         var currentStateData = {
                             name: $state.current.name || 'course',

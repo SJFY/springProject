@@ -132,6 +132,7 @@
 
         function clear() {
             vm.searchQuery = null;
+            vm.currentSearch = null;
             loadAll();
         }
     }
